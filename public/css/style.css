@@ -1,0 +1,38 @@
+body {
+    background-color: rgb(43, 1, 158);
+
+}
+
+.container {
+    /* border: 1px solid red!important; */
+    width: 50%;
+    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.card {
+    width: 100%;
+    padding: 25px 25px;
+    line-height: 1.6;
+    background-color: white;
+    border-radius: 8px;
+}
+
+h1 {
+    font-size: 25px;
+}
+
+.card form {
+    padding-top: 15px;
+
+}
+
+.add-button {
+    margin-left: auto;
+    display: inline-block;
+    align-items: center;
+}
