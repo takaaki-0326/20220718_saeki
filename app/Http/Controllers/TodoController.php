@@ -41,7 +41,7 @@ class TodoController extends Controller
     {
         $form = $request->all();
         unset($form['_token']);
-        Todo::where('content', $request->content)->update($form);
+        Todo::where('content', $request->id)->update($form);
         return redirect()
             ->route('todos.index');
     }
