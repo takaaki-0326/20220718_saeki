@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -13,8 +14,8 @@
             <h1>Todo List</h1>
             <form method="post" action="{{ route('todos.create') }}">
                 @csrf
-                <input type="text" name="task">
-                <button class="add-button" type="submit">追加</button>
+                <input type="text" name="content">{{-- もしくは""content"でも良い。このneme属性は、todosテーブルのどのカラムに挿入するかを指定している --}}
+                <button class="add-button">追加</button>
             </form>
             <div class="todo-items">
                 <table>
@@ -25,44 +26,62 @@
                         <th>削除</th>
                     </tr>
 
-                    {{-- <tr> --}}
-                        {{-- <td>2022/07/01</td>
-                        @foreach ($todos as $todo)
-                            <td><input type="text" value="{{ route('index', $todo->id) }}">
-                                {{ $todo->content }}
+                    {{-- @foreach ($todos as $todo)
+                        <tr>
+                            <td>{{ $todo->created_at }}</td>
+                            <td><input type="text" name="content" value="{{ $todo->content }}"></td>
+                            {{-- ここから教材 --}}
+                            {{-- <td>
+                                <form method="post" action="/todo/update">
+                                    @csrf
+                                    <button>更新</button>
+                                </form>
+                            </td> --}}
+                            {{-- ここまで教材 --}}
+                            {{-- <td>
+                                <form method="post" action="{{ route('todos.delete', $todo) }}">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button>削除</button>
+                                </form><br>
                             </td>
-                        @endforeach
-                        <td><button>更新</button></td>
-                        <td><button>削除</button></td> --}}
-                    {{-- </tr> --}}
-                    {{-- <tr>
-                        <td>{{ $todos[0]->created_at }}</td>
-                        <td><input type="text" value="{{ $todos[0]->content }}"></td>
-                        <td><button>更新</button></td>
-                        <td><button>削除</button></td>
-                    </tr> --}}
-                    {{-- <tr>
-                        @forelse ($posts as $post)
-                        <td>{{ route('todos->created_at }}</td>
-                        <td><input type="text" value="{{ $todos[0]->content }}"></td>
-                        <td><button>更新</button></td>
-                        <td><button>削除</button></td>
-                    </tr> --}}
+                        </tr>
+                    @endforeach --}}
 
 
-                        @foreach ($todos as $todo)
-                            <tr>
-                                <td>{{ $todo->created_at }}</td>
-                                <td><input type="text" value="{{ $todo->content }}"></td>
-                                <td><button>更新</button></td>
-                                <td><button>削除</button><br></td>
-                            </tr>
-                        @endforeach
+                    {{-- @foreach ($todos as $todo)
+                        <tr>
+                            <td>{{ $todo->created_at }}</td>
+                            <td><input type="text" value="{{ $todo->content }}"></td>
+                            <td><button>更新</button></td>
+                            <td><button>削除</button><br></td>
+                        </tr>
+                    @endforeach --}}
 
-
+                    @foreach ($todos as $todo)
+                        <tr>
+                            <td>{{ $todo->created_at }}</td>
+                            <td><input type="text" name="content" value="{{ $todo->content }}"></td>
+                            <td>
+                                <form method="post" action="{{ route('todos.update', $todo) }}">
+                                    @method('PATCH')
+                                    @csrf
+                                    <button>更新</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form method="post" action="{{ route('todos.delete', $todo) }}">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button>削除</button>
+                                </form><br>
+                            </td>
+                        </tr>
+                    @endforeach
                 </table>
             </div>
         </div>
     </div>
 </body>
 </html>
+

@@ -19,5 +19,14 @@ Route::get('/', [TodoController::class, 'index'])
 Route::post('/todo/create', [TodoController::class, 'create'])
     ->name('todos.create');
 
-Route::post('/todo/update', [TodoController::class, 'update']);
-Route::post('/todo/delete', [TodoController::class, 'delete']);
+// ここから教材
+// Route::post('/todo/update', [TodoController::class, 'update']);
+// ここまで教材
+
+
+Route::patch('/todo/update', [TodoController::class, 'update'])
+    ->name('todos.update');
+
+
+Route::delete('/todo/delete', [TodoController::class, 'delete'])
+    ->name('todos.delete');

@@ -15,6 +15,7 @@ class TodoController extends Controller
             ->with(['todos' => $todos]);//$todosを'todos'に代入してindex.blade.phpに送る
     }
 
+
     public function create(Request $request)
     {
         $todo = new Todo();
@@ -26,11 +27,36 @@ class TodoController extends Controller
     }
 
 
-// public function create(Request $request)
-//     {
-//         $this->validate($request, Todo::$rules);
-//         $form = $request->all();
-//         Todo::create($form);
-//         return redirect('/');
-//     }
+    public function update(Request $request, Post $todo)
+    {
+        $todo->content = $request->content;
+        $todo->save();
+
+        return redirect()
+            ->route('todos.index', $todo);
+    }
+
+// ここから教材
+    // public function update(Request $request)
+    // {
+    //     $form = $request->all();
+    //     unset($form['_token']);
+    //     Todo::where('content', $request->content)->update($form);
+    //     return redirect('/');
+
+    // }
+// ここまで教材
+
+    // public function delete(Request $request)
+    // {
+    //     $todo = Todo::find($request->id);
+    //     return view('delete', ['todo' => $todo]);
+    // }
+
+    public function delete(Post $todo)
+    {
+        $todo->delete();
+        return redirect()
+            ->route('todos.index');
+    }
 }
