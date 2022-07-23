@@ -27,24 +27,24 @@ class TodoController extends Controller
     }
 
 
-    public function update(Request $request, Post $todo)
-    {
-        $todo->content = $request->content;
-        $todo->save();
+    // public function update(Request $request, Todo $todo)
+    // {
+    //     $todo->content = $request->content;
+    //     $todo->save();
 
-        return redirect()
-            ->route('todos.index', $todo);
-    }
+    //     return redirect()
+    //         ->route('todos.index', $todo);
+    // }
 
 // ここから教材
-    // public function update(Request $request)
-    // {
-    //     $form = $request->all();
-    //     unset($form['_token']);
-    //     Todo::where('content', $request->content)->update($form);
-    //     return redirect('/');
-
-    // }
+    public function update(Request $request)
+    {
+        $form = $request->all();
+        unset($form['_token']);
+        Todo::where('content', $request->content)->update($form);
+        return redirect()
+            ->route('todos.index');
+    }
 // ここまで教材
 
     // public function delete(Request $request)
@@ -53,7 +53,7 @@ class TodoController extends Controller
     //     return view('delete', ['todo' => $todo]);
     // }
 
-    public function delete(Post $todo)
+    public function delete(Todo $todo)
     {
         $todo->delete();
         return redirect()

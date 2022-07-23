@@ -24,8 +24,7 @@ Route::post('/todo/create', [TodoController::class, 'create'])
 // ここまで教材
 
 
-Route::patch('/todo/update', [TodoController::class, 'update'])
-    ->name('todos.update');
+Route::post('/todo/update', [TodoController::class, 'update']);
 
 
 Route::delete('/todo/delete', [TodoController::class, 'delete'])

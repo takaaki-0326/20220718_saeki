@@ -58,7 +58,7 @@
                         </tr>
                     @endforeach --}}
 
-                    @foreach ($todos as $todo)
+                    {{-- @foreach ($todos as $todo)
                         <tr>
                             <td>{{ $todo->created_at }}</td>
                             <td><input type="text" name="content" value="{{ $todo->content }}"></td>
@@ -69,6 +69,30 @@
                                     <button>更新</button>
                                 </form>
                             </td>
+                            <td>
+                                <form method="post" action="{{ route('todos.delete', $todo) }}">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button>削除</button>
+                                </form><br>
+                            </td>
+                        </tr>
+                    @endforeach --}}
+
+                    @foreach ($todos as $todo)
+                        <tr>
+                            <td>{{ $todo->created_at }}</td>
+                            {{-- <form method="post" action="{{ route('todos.update', $todo) }}"> --}}
+                            <form method="post" action="/todo/update">
+                                @csrf
+                                <td>
+                                    <input type="text" name="content" value="{{ $todo->content }}">
+                                </td>
+                                <td>
+                                    <button>更新</button>
+                                </td>
+                            </form>
+
                             <td>
                                 <form method="post" action="{{ route('todos.delete', $todo) }}">
                                     @method('DELETE')
