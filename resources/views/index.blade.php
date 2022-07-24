@@ -25,59 +25,6 @@
                         <th>更新</th>
                         <th>削除</th>
                     </tr>
-{{--  --}}
-                    {{-- @foreach ($todos as $todo)
-                        <tr>
-                            <td>{{ $todo->created_at }}</td>
-                            <td><input type="text" name="content" value="{{ $todo->content }}"></td>
-                            {{-- ここから教材 --}}
-                            {{-- <td>
-                                <form method="post" action="/todo/update">
-                                    @csrf
-                                    <button>更新</button>
-                                </form>
-                            </td> --}}
-                            {{-- ここまで教材 --}}
-                            {{-- <td>
-                                <form method="post" action="{{ route('todos.delete', $todo) }}">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button>削除</button>
-                                </form><br>
-                            </td>
-                        </tr>
-                    @endforeach --}}
-
-
-                    {{-- @foreach ($todos as $todo)
-                        <tr>
-                            <td>{{ $todo->created_at }}</td>
-                            <td><input type="text" value="{{ $todo->content }}"></td>
-                            <td><button>更新</button></td>
-                            <td><button>削除</button><br></td>
-                        </tr>
-                    @endforeach --}}
-
-                    {{-- @foreach ($todos as $todo)
-                        <tr>
-                            <td>{{ $todo->created_at }}</td>
-                            <td><input type="text" name="content" value="{{ $todo->content }}"></td>
-                            <td>
-                                <form method="post" action="{{ route('todos.update', $todo) }}">
-                                    @method('PATCH')
-                                    @csrf
-                                    <button>更新</button>
-                                </form>
-                            </td>
-                            <td>
-                                <form method="post" action="{{ route('todos.delete', $todo) }}">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button>削除</button>
-                                </form><br>
-                            </td>
-                        </tr>
-                    @endforeach --}}
 
                     @foreach ($items as $item)
                         <tr>

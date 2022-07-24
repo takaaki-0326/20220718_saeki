@@ -39,15 +39,9 @@ class TodoController extends Controller
 
     public function delete(Request $request)
     {
-        $param = [
-            'id' => $request->id,
-            'content' => $request->content,
-            'created_at' => $request->created_at,
-            'updated_at' => $request->updated_at,
-        ];
-        DB::table('todos')->find('content', $request->content)->delete();
+        $param = ['id' => $request->id];
+        DB::table('todos')->find('id', $request->id)->delete();
         return redirect('/');
     }
-
 }
 
