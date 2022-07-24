@@ -12,7 +12,7 @@
     <div class="container">
         <div class="card">
             <h1>Todo List</h1>
-            <form method="post" action="{{ route('todos.create') }}">
+            <form method="post" action="/todo/create">
                 @csrf
                 <input type="text" name="content">{{-- もしくは""content"でも良い。このneme属性は、todosテーブルのどのカラムに挿入するかを指定している --}}
                 <button class="add-button">追加</button>
@@ -25,7 +25,7 @@
                         <th>更新</th>
                         <th>削除</th>
                     </tr>
-
+{{--  --}}
                     {{-- @foreach ($todos as $todo)
                         <tr>
                             <td>{{ $todo->created_at }}</td>
@@ -79,14 +79,14 @@
                         </tr>
                     @endforeach --}}
 
-                    @foreach ($todos as $todo)
+                    @foreach ($items as $item)
                         <tr>
-                            <td>{{ $todo->created_at }}</td>
+                            <td>{{ $item->created_at }}</td>
                             {{-- <form method="post" action="{{ route('todos.update', $todo) }}"> --}}
                             <form method="post" action="/todo/update">
                                 @csrf
                                 <td>
-                                    <input type="text" name="content" value="{{ $todo->content }}">
+                                    <input type="text" name="content" value="{{ $item->content }}">
                                 </td>
                                 <td>
                                     <button>更新</button>
@@ -94,8 +94,7 @@
                             </form>
 
                             <td>
-                                <form method="post" action="{{ route('todos.delete', $todo) }}">
-                                    @method('DELETE')
+                                <form method="post" action="/todo/delete">
                                     @csrf
                                     <button>削除</button>
                                 </form><br>

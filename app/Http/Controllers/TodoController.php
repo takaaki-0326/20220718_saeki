@@ -3,60 +3,51 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Todo;
+use Illuminate\Support\Facades\DB;
 
 class TodoController extends Controller
 {
     public function index()//フォームに入力されたtodoを$todoに代入する
     {
-        $todos = Todo::latest()->get();
-
-        return view('index')
-            ->with(['todos' => $todos]);//$todosを'todos'に代入してindex.blade.phpに送る
+        $items = DB::table('todos')->get();
+        return view('index', ['items' => $items]);
     }
-
 
     public function create(Request $request)
     {
-        $todo = new Todo();
-        $todo->content = $request->content;
-        $todo->save();
-
-        return redirect()
-            ->route('todos.index');
+        $param = [
+            'id' => $request->id,
+            'content' => $request->content,
+            'created_at' => $request->created_at,
+            'updated_at' => $request->updated_at,
+        ];
+        DB::table('todos')->insert($param);
+        return redirect('/');
     }
 
-
-    // public function update(Request $request, Todo $todo)
-    // {
-    //     $todo->content = $request->content;
-    //     $todo->save();
-
-    //     return redirect()
-    //         ->route('todos.index', $todo);
-    // }
-
-// ここから教材
     public function update(Request $request)
     {
-        $form = $request->all();
-        unset($form['_token']);
-        Todo::where('content', $request->id)->update($form);
-        return redirect()
-            ->route('todos.index');
+        $param = [
+            'id' => $request->id,
+            'content' => $request->content,
+            'created_at' => $request->created_at,
+            'updated_at' => $request->updated_at,
+        ];
+        DB::table('todos')->find('id', $request->id)->update($param);
+        return redirect('/');
     }
-// ここまで教材
 
-    // public function delete(Request $request)
-    // {
-    //     $todo = Todo::find($request->id);
-    //     return view('delete', ['todo' => $todo]);
-    // }
-
-    public function delete(Todo $todo)
+    public function delete(Request $request)
     {
-        $todo->delete();
-        return redirect()
-            ->route('todos.index');
+        $param = [
+            'id' => $request->id,
+            'content' => $request->content,
+            'created_at' => $request->created_at,
+            'updated_at' => $request->updated_at,
+        ];
+        DB::table('todos')->find('content', $request->content)->delete();
+        return redirect('/');
     }
+
 }
+
