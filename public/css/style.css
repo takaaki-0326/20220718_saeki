@@ -1,6 +1,5 @@
 body {
     background-color: rgb(43, 1, 158);
-
 }
 
 .container {
@@ -16,7 +15,7 @@ body {
 
 .card {
     width: 100%;
-    padding: 25px 25px;
+    padding: 25px 32px;
     line-height: 1.6;
     background-color: white;
     border-radius: 8px;
@@ -28,11 +27,90 @@ h1 {
 
 .card form {
     padding-top: 15px;
-
 }
 
 .add-button {
-    margin-left: auto;
     display: inline-block;
     align-items: center;
+    background-color: white;
+    border: 2px solid rgb(204, 83, 204);
+    color: rgb(204, 83, 204);
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    background-color: rgb(204, 83, 204);
+    color: white;
+    transition: 0.5s;
+}
+
+.create-text {
+    line-height: 2.4;
+    border-radius: 5px;
+    border: 1px solid rgb(194, 194, 194);
+    width: 80%;
+    display: inline-block;
+}
+
+.create-flexbox {
+    display: flex;
+    justify-content: space-between;
+}
+
+.todo-items__title {
+    padding-top: 30px;
+}
+
+.todo-items__title tr {
+    display: flex;
+    justify-content: space-between;
+}
+
+.todo-items__title th {
+    display: inline-block;
+}
+
+table {
+    width: 100%;
+}
+
+.update-button {
+    background-color: white;
+    border: 2px solid rgb(230, 145, 96);
+    color: rgb(230, 145, 96);
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px 15px;
+}
+
+.update-button:hover {
+    background-color: rgb(230, 145, 96);
+    color: white;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.update-input {
+    line-height: 1.8;
+    border-radius: 5px;
+    border: 1px solid rgb(194, 194, 194);
+}
+
+.delete-button {
+    background-color: white;
+    border: 2px solid rgb(130, 253, 233);
+    color: rgb(130, 253, 233);
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px 15px;
+}
+
+.delete-button:hover {
+    background-color: rgb(130, 253, 233);
+    color: white;
+    transition: 0.5s;
+    cursor: pointer;
 }

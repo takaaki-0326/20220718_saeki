@@ -15,8 +15,8 @@ use App\Http\Controllers\TodoController;
 
 Route::get('/', [TodoController::class, 'index']);
 
-Route::post('/todo/create', [TodoController::class, 'create']);
-
-Route::post('/todo/update', [TodoController::class, 'update']);
-
-Route::post('/todo/delete', [TodoController::class, 'delete']);
+Route::prefix('todo')->group(function () {
+    Route::post('create', [TodoController::class, 'create']);
+    Route::post('update/{id}', [TodoController::class, 'update']);
+    Route::post('delete/{id}', [TodoController::class, 'delete']);
+});

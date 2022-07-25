@@ -15,11 +15,11 @@ class TodoController extends Controller
 
     public function create(Request $request)
     {
+        $request->validate([
+            'content' => 'required',
+        ]);
         $param = [
-            'id' => $request->id,
             'content' => $request->content,
-            'created_at' => $request->created_at,
-            'updated_at' => $request->updated_at,
         ];
         DB::table('todos')->insert($param);
         return redirect('/');
@@ -27,20 +27,21 @@ class TodoController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'content' => 'required',
+        ]);
         $param = [
             'id' => $request->id,
             'content' => $request->content,
-            'created_at' => $request->created_at,
-            'updated_at' => $request->updated_at,
         ];
-        DB::table('todos')->find('id', $request->id)->update($param);
+        DB::table('todos')->where('id', $request->id)->update($param);
         return redirect('/');
     }
 
     public function delete(Request $request)
     {
         $param = ['id' => $request->id];
-        DB::table('todos')->find('id', $request->id)->delete();
+        DB::table('todos')->where('id', $request->id)->delete($param);
         return redirect('/');
     }
 }

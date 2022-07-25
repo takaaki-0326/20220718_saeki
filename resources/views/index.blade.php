@@ -12,38 +12,44 @@
     <div class="container">
         <div class="card">
             <h1>Todo List</h1>
+            @if (count($errors) > 0)
+            <ul>
+                <li>The content field is required.</li>
+            </ul>
+            @endif
             <form method="post" action="/todo/create">
                 @csrf
-                <input type="text" name="content">{{-- もしくは""content"でも良い。このneme属性は、todosテーブルのどのカラムに挿入するかを指定している --}}
-                <button class="add-button">追加</button>
+                <div class="create-flexbox">
+                    <input type="text" name="content" class=create-text>
+                    <button class="add-button">追加</button>
+                </div>
             </form>
             <div class="todo-items">
                 <table>
-                    <tr>
-                        <th>作成日</th>
-                        <th>タスク名</th>
-                        <th>更新</th>
-                        <th>削除</th>
-                    </tr>
-
+                    <div class="todo-items__title">
+                        <tr>
+                            <th>作成日</th>
+                            <th>タスク名</th>
+                            <th>更新</th>
+                            <th>削除</th>
+                        </tr>
+                    </div>
                     @foreach ($items as $item)
                         <tr>
-                            <td>{{ $item->created_at }}</td>
-                            {{-- <form method="post" action="{{ route('todos.update', $todo) }}"> --}}
-                            <form method="post" action="/todo/update">
+                            <form method="post" action="/todo/update/{{ $item->id }}">
                                 @csrf
+                                <td>{{ $item->created_at }}</td>
                                 <td>
-                                    <input type="text" name="content" value="{{ $item->content }}">
+                                    <input type="text" name="content" value="{{ $item->content }}" class="update-input">
                                 </td>
                                 <td>
-                                    <button>更新</button>
+                                    <button class="update-button">更新</button>
                                 </td>
                             </form>
-
                             <td>
-                                <form method="post" action="/todo/delete">
+                                <form method="post" action="/todo/delete/{{ $item->id }}">
                                     @csrf
-                                    <button>削除</button>
+                                    <button class="delete-button">削除</button>
                                 </form><br>
                             </td>
                         </tr>
@@ -54,4 +60,3 @@
     </div>
 </body>
 </html>
-
